@@ -9,9 +9,7 @@ class NewsSingleton extends Observable {
     private static NewsSingleton sInstance = null;
     private List<NewsModel> mNewsList = new ArrayList<>();
 
-    private NewsSingleton() {
-
-    }
+    private NewsSingleton() {}
 
     static NewsSingleton getInstance() {
         if (sInstance == null) {
@@ -24,7 +22,5 @@ class NewsSingleton extends Observable {
         // TODO : load news from Firebase then notifiy observers
     }
 
-    List<NewsModel> getNews() {
-        return mNewsList;
-    }
+    List<NewsModel> getNews() { return mNewsList; }
 }
