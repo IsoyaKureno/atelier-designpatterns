@@ -29,7 +29,16 @@ class NewsSingleton extends Observable {
         DatabaseReference newsRef = database.getReference("news");
         newsRef.addValueEventListener(new ValueEventListener() {
             @Override public void onDataChange(DataSnapshot dataSnapshot) {
-                //
+                //////////
+                List<NewsModel> newsList = new ArrayList<>();
+                for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
+                    NewsModel newsModel = newsSnapshot.getValue(NewsModel.class);
+                    newsList.add(newsModel);
+                }
+                mNewsList = newsList;
+                //setChanged();
+                //notifyObservers();
+                //////////
             }
             @Override public void onCancelled(DatabaseError databaseError) {}
         });
