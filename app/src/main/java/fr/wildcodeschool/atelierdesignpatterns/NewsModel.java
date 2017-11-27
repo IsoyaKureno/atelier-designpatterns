@@ -1,25 +1,39 @@
 package fr.wildcodeschool.atelierdesignpatterns;
 
-public class NewsModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class NewsModel implements Parcelable{
 
     private String headline;
     private String newsContent;
 
     public NewsModel() {}
 
-    public String getHeadline() {
-        return headline;
+    public String getHeadline() {return headline;}
+
+    public void setHeadline(String headline) {this.headline = headline;}
+
+    public String getNewsContent() {return newsContent;}
+
+    public void setNewsContent(String newContent) {this.newsContent = newContent;}
+
+    @Override
+    public int describeContents() {return 0;}
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(headline);
+        parcel.writeString(newsContent);
     }
 
-    public void setHeadline(String headline) {
-        this.headline = headline;
+    private NewsModel(Parcel in){
+        headline = in.readString();
+        newsContent = in.readString();
     }
 
-    public String getNewsContent() {
-        return newsContent;
-    }
-
-    public void setNewsContent(String newContent) {
-        this.newsContent = newContent;
-    }
+    public static final Creator<NewsModel> CREATOR = new Creator<NewsModel>() {
+        @Override public NewsModel createFromParcel(Parcel in) {return new NewsModel(in);}
+        @Override public NewsModel[] newArray(int size) {return new NewsModel[size];}
+    };
 }

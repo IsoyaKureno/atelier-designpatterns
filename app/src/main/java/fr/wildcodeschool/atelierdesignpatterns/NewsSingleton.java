@@ -36,8 +36,8 @@ class NewsSingleton extends Observable {
                     newsList.add(newsModel);
                 }
                 mNewsList = newsList;
-                //setChanged();
-                //notifyObservers();
+                setChanged();
+                notifyObservers();
                 //////////
             }
             @Override public void onCancelled(DatabaseError databaseError) {}
