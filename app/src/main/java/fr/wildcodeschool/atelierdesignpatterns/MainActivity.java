@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
             public void onClick(NewsModel newsModel) {
                 // TODO : call NewsActivity
                 Intent toNewsActivity = new Intent(MainActivity.this,NewsActivity.class);
-                toNewsActivity.putExtra("NewsSingleton",newsModel);
+                toNewsActivity.putExtra("NewsModel",newsModel);
                 startActivity(toNewsActivity);
             }
         });
