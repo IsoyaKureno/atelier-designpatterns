@@ -1,5 +1,11 @@
 package fr.wildcodeschool.atelierdesignpatterns;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -19,7 +25,14 @@ class NewsSingleton extends Observable {
     }
 
     void loadNews() {
-        // TODO : load news from Firebase then notifiy observers
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference newsRef = database.getReference("news");
+        newsRef.addValueEventListener(new ValueEventListener() {
+            @Override public void onDataChange(DataSnapshot dataSnapshot) {
+                //
+            }
+            @Override public void onCancelled(DatabaseError databaseError) {}
+        });
     }
 
     List<NewsModel> getNews() { return mNewsList; }
